@@ -57,4 +57,19 @@ class Location(models.Model):
     def __str__(self):
         return f"{self.city}, {self.state}"
 
+    def get_location(self):
+        """
+        Получает координаты по ЗИП коду
+        """
+
+        geolocator = Nominatim(user_agent="my-app")
+        location = geolocator.geocode(self.zip_code)
+
+        if location:
+            self.latitude = location.latitude
+            self.longitude = location.longitude
+            self.save()
+
+        return location
+
 
