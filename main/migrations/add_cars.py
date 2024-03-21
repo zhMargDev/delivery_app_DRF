@@ -42,13 +42,14 @@ def add_cars(apps, schema_editor):
 
             try:
               # Создать и сохранить машину
-              Car.objects.create(
+              car = Car.objects.create(
                 current_location=address,
                 carrying_capacity=carrying_capacity,
                 latitude=coordinates[0],
                 longitude=coordinates[1],
                 serial_number=serial_number,
               )
+              car.save()
             except:
               pass
 

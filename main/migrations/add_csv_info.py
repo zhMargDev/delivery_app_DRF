@@ -15,13 +15,14 @@ def add_locations_from_csv(apps, schema_editor):
 
             for row in reader:
                 # Создать и сохранить объект Location
-                Location.objects.create(
+                location = Location.objects.create(
                   city=row[3],
                   state=row[17],
                   zip_code=row[10],
                   latitude=row[11],
                   longitude=row[12],
                 )
+                location.save()
 # Обработчик миграции
 class Migration(migrations.Migration):
 
